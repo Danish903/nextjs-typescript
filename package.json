@@ -9,11 +9,18 @@
   },
   "dependencies": {
     "@zeit/next-typescript": "^1.1.1",
+    "apollo-boost": "^0.3.1",
+    "apollo-link-context": "^1.0.17",
+    "apollo-link-http": "^1.5.14",
+    "cookie": "^0.3.1",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "^8.0.3",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.3",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@types/cookie": "^0.3.2",
     "@types/next": "^7.0.6",
     "@types/react": "^16.4.16",
     "@types/react-dom": "16.0.11",
