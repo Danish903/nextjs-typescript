@@ -716,6 +716,41 @@
     import-from "2.1.0"
     tslib "1.9.3"
 
+"@graphql-codegen/typescript-operations@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-operations/-/typescript-operations-1.0.6.tgz#92523f249a0664fa18b765bf6b125834793a49ab"
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.0.6"
+    "@graphql-codegen/typescript" "1.0.6"
+    "@graphql-codegen/visitor-plugin-common" "1.0.6"
+    tslib "1.9.3"
+
+"@graphql-codegen/typescript-react-apollo@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-apollo/-/typescript-react-apollo-1.0.6.tgz#c51fcaee4501fab3c48b21ddd71defb6d1e4f667"
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.0.6"
+    "@graphql-codegen/visitor-plugin-common" "1.0.6"
+    tslib "1.9.3"
+
+"@graphql-codegen/typescript@1.0.6", "@graphql-codegen/typescript@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-1.0.6.tgz#87155ca7e2ca1de9b73830b7699238b345c292bd"
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.0.6"
+    "@graphql-codegen/visitor-plugin-common" "1.0.6"
+    tslib "1.9.3"
+
+"@graphql-codegen/visitor-plugin-common@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.0.6.tgz#18c959c428035fe16690dac32c41b58f09623826"
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.0.6"
+    auto-bind "2.0.0"
+    dependency-graph "0.8.0"
+    graphql-tag "2.10.1"
+    tslib "1.9.3"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -1286,6 +1321,10 @@ asynckit@^0.4.0:
 atob@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
+
+auto-bind@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/auto-bind/-/auto-bind-2.0.0.tgz#9a55a461b521f58daf955169203bed1a07a970a9"
 
 autodll-webpack-plugin@0.4.2:
   version "0.4.2"
@@ -2013,6 +2052,10 @@ delegates@^1.0.0:
 depd@~1.1.1, depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
+
+dependency-graph@0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/dependency-graph/-/dependency-graph-0.8.0.tgz#2da2d35ed852ecc24a5d6c17788ba57c3708755b"
 
 deprecated-decorator@^0.1.6:
   version "0.1.6"
