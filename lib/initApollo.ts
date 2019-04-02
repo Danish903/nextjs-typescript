@@ -31,6 +31,7 @@ function create(
 
    const authLink = setContext((_, { headers }) => {
       const token = getToken();
+
       return {
          headers: {
             ...headers,

@@ -20,10 +20,12 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.0.6",
     "@types/cookie": "^0.3.2",
     "@types/next": "^7.0.6",
     "@types/react": "^16.4.16",
     "@types/react-dom": "16.0.11",
+    "graphql-code-generator": "^0.18.0",
     "typescript": "3.2.4"
   },
   "license": "ISC"
