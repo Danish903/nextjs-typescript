@@ -1,8 +1,5 @@
 
-static/*
-
-docs/* linguist-documentation
-
+* linguist-vendored
 *.js linguist-vendored=false
 
 # *.rb linguist-language=TypeScript
