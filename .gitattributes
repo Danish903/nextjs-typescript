@@ -2,6 +2,7 @@
 static/*
 
 docs/* linguist-documentation
+
 *.js linguist-vendored=false
 
-*.rb linguist-language=TypeScript
+# *.rb linguist-language=TypeScript
