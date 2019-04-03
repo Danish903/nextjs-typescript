@@ -1,1 +1,6 @@
+
+static/*
+
+docs/* linguist-documentation
+
 *.rb linguist-language=TypeScript
