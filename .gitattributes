@@ -3,4 +3,4 @@ static/*
 
 docs/* linguist-documentation
 
-*.rb linguist-language=TypeScript
+*.rb linguist-language=Java
