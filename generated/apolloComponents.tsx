@@ -92,6 +92,17 @@ export type LoginMutation = { __typename?: "Mutation" } & {
   >;
 };
 
+export type RegisterMutationVariables = {
+  data: RegisterInput;
+};
+
+export type RegisterMutation = { __typename?: "Mutation" } & {
+  register: { __typename?: "User" } & Pick<
+    User,
+    "id" | "firstName" | "lastName" | "email" | "name"
+  >;
+};
+
 import gql from "graphql-tag";
 import * as React from "react";
 import * as ReactApollo from "react-apollo";
@@ -144,4 +155,55 @@ export function withLogin<TProps, TChildProps = {}>(
     LoginMutationVariables,
     LoginProps<TChildProps>
   >(LoginDocument, operationOptions);
+}
+export const RegisterDocument = gql`
+  mutation Register($data: RegisterInput!) {
+    register(data: $data) {
+      id
+      firstName
+      lastName
+      email
+      name
+    }
+  }
+`;
+
+export class RegisterComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<RegisterMutation, RegisterMutationVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<RegisterMutation, RegisterMutationVariables>
+        mutation={RegisterDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type RegisterProps<TChildProps = {}> = Partial<
+  ReactApollo.MutateProps<RegisterMutation, RegisterMutationVariables>
+> &
+  TChildProps;
+export type RegisterMutationFn = ReactApollo.MutationFn<
+  RegisterMutation,
+  RegisterMutationVariables
+>;
+export function withRegister<TProps, TChildProps = {}>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        RegisterMutation,
+        RegisterMutationVariables,
+        RegisterProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.withMutation<
+    TProps,
+    RegisterMutation,
+    RegisterMutationVariables,
+    RegisterProps<TChildProps>
+  >(RegisterDocument, operationOptions);
 }
