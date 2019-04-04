@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 
 import { LoginComponent } from "../generated/apolloComponents";
 
+// @ts-ignore
 const IndexPage: React.FunctionComponent = () => {
    return (
       <Layout title="Home | Next.js + TypeScript Example">

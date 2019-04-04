@@ -78,6 +78,15 @@ export type User = {
   email: Scalars["String"];
   name: Scalars["String"];
 };
+export type ConfirmUserMutationVariables = {
+  token: Scalars["String"];
+};
+
+export type ConfirmUserMutation = { __typename?: "Mutation" } & Pick<
+  Mutation,
+  "confirmUser"
+>;
+
 export type LoginMutationVariables = {
   email: Scalars["String"];
   password: Scalars["String"];
@@ -107,6 +116,51 @@ import gql from "graphql-tag";
 import * as React from "react";
 import * as ReactApollo from "react-apollo";
 
+export const ConfirmUserDocument = gql`
+  mutation ConfirmUser($token: String!) {
+    confirmUser(token: $token)
+  }
+`;
+
+export class ConfirmUserComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<ConfirmUserMutation, ConfirmUserMutationVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<ConfirmUserMutation, ConfirmUserMutationVariables>
+        mutation={ConfirmUserDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type ConfirmUserProps<TChildProps = {}> = Partial<
+  ReactApollo.MutateProps<ConfirmUserMutation, ConfirmUserMutationVariables>
+> &
+  TChildProps;
+export type ConfirmUserMutationFn = ReactApollo.MutationFn<
+  ConfirmUserMutation,
+  ConfirmUserMutationVariables
+>;
+export function withConfirmUser<TProps, TChildProps = {}>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ConfirmUserMutation,
+        ConfirmUserMutationVariables,
+        ConfirmUserProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.withMutation<
+    TProps,
+    ConfirmUserMutation,
+    ConfirmUserMutationVariables,
+    ConfirmUserProps<TChildProps>
+  >(ConfirmUserDocument, operationOptions);
+}
 export const LoginDocument = gql`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {

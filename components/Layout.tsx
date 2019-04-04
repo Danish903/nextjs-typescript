@@ -6,6 +6,7 @@ type Props = {
    title?: string;
 };
 
+// @ts-ignore
 const Layout: React.FunctionComponent<Props> = ({
    children,
    title = "This is the default title"

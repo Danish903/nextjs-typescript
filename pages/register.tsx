@@ -4,31 +4,49 @@ import { Formik, Field } from "formik";
 import { InputField } from "../components/Fields/InputField";
 import { RegisterComponent } from "../generated/apolloComponents";
 
-const Register: React.FunctionComponent = () => (
+// @ts-ignore
+const Register: React.FunctionComponent<Props> = () => (
    <Layout title="Register Page">
       <RegisterComponent>
          {register => (
             <Formik
+               validateOnBlur={false}
+               validateOnChange={false}
                initialValues={{
                   email: "",
                   firstName: "",
                   lastName: "",
                   password: ""
                }}
-               onSubmit={async (values, actions) => {
-                  console.log({ values, actions });
+               onSubmit={async (values, { setErrors }) => {
                   const { email, firstName, lastName, password } = values;
-                  const response = await register({
-                     variables: {
-                        data: {
-                           email,
-                           firstName,
-                           lastName,
-                           password
+                  try {
+                     const response = await register({
+                        variables: {
+                           data: {
+                              email,
+                              firstName,
+                              lastName,
+                              password
+                           }
                         }
-                     }
-                  });
-                  console.log(response);
+                     });
+                     console.log({ response });
+                  } catch (error) {
+                     const err =
+                        error.graphQLErrors[0].extensions.exception
+                           .validationErrors;
+                     const errors: any = {};
+                     err.forEach((validationError: any) => {
+                        Object.values(validationError.constraints).forEach(
+                           (message: any) => {
+                              errors[validationError.property] = message;
+                           }
+                        );
+                     });
+
+                     setErrors(errors);
+                  }
                }}
             >
                {({ values, handleSubmit }) => {
