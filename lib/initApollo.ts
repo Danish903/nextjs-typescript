@@ -36,9 +36,9 @@ function create(
             console.log(
                `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
             );
-            if (isBroswer && message.includes("You must be authenticated!")) {
-               Router.replace("/login");
-            }
+            // if (isBroswer && message.includes("You must be authenticated!")) {
+            //    Router.replace("/login");
+            // }
          });
       if (networkError) console.log(`[Network error]: ${networkError}`);
    });

@@ -1,8 +1,9 @@
 import * as React from "react";
 import { HelloWorldComponent } from "../generated/apolloComponents";
 import Layout from "../components/Layout";
+import { withAuth } from "../components/withAuth";
 
-export const Hello = () => {
+export const Hello: React.FC = () => {
    return (
       <Layout title="Hello">
          <HelloWorldComponent>
@@ -18,4 +19,4 @@ export const Hello = () => {
    );
 };
 
-export default Hello;
+export default withAuth(Hello);

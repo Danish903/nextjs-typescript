@@ -115,9 +115,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _isBroswer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./isBroswer */ "./lib/isBroswer.ts");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/router */ "./node_modules/next/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_7__);
-
 
 
 
@@ -145,11 +142,9 @@ function create(initialState, _ref) {
       var message = _ref3.message,
           locations = _ref3.locations,
           path = _ref3.path;
-      console.log("[GraphQL error]: Message: ".concat(message, ", Location: ").concat(locations, ", Path: ").concat(path));
-
-      if (_isBroswer__WEBPACK_IMPORTED_MODULE_6__["isBroswer"] && message.includes("You must be authenticated!")) {
-        next_router__WEBPACK_IMPORTED_MODULE_7___default.a.replace("/login");
-      }
+      console.log("[GraphQL error]: Message: ".concat(message, ", Location: ").concat(locations, ", Path: ").concat(path)); // if (isBroswer && message.includes("You must be authenticated!")) {
+      //    Router.replace("/login");
+      // }
     });
     if (networkError) console.log("[Network error]: ".concat(networkError));
   });
