@@ -24,28 +24,20 @@ const Layout: React.FunctionComponent<Props> = ({
          <nav>
             <Link href="/">
                <a>Home</a>
-            </Link>{" "}
-            |{" "}
-            <Link href="/list-class">
-               <a>List Example</a>
-            </Link>{" "}
-            |{" "}
-            <Link href="/list-fc">
-               <a>List Example (as Functional Component)</a>
-            </Link>{" "}
-            |{" "}
-            <Link href="/about">
-               <a>About</a>
-            </Link>{" "}
-            |{" "}
+            </Link>
+            |
+            <Link href="/hello">
+               <a>Hello</a>
+            </Link>
+            |
             <Link href="/register">
                <a>Register</a>
-            </Link>{" "}
-            |{" "}
+            </Link>
+            |
             <Link href="/login">
                <a>Login</a>
-            </Link>{" "}
-            |{" "}
+            </Link>
+            |
          </nav>
       </header>
       {children}

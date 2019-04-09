@@ -5,8 +5,7 @@ import { InputField } from "../components/Fields/InputField";
 import { RegisterComponent } from "../generated/apolloComponents";
 import Router from "next/router";
 
-// @ts-ignore
-const Register: React.FunctionComponent<Props> = () => (
+const Register: React.FunctionComponent<{}> = () => (
    <Layout title="Register Page">
       <RegisterComponent>
          {register => (

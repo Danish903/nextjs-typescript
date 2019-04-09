@@ -3,10 +3,12 @@ import {
    InMemoryCache,
    NormalizedCacheObject
 } from "apollo-boost";
+import { onError } from "apollo-link-error";
 import { createHttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 import fetch from "isomorphic-unfetch";
 import { isBroswer } from "./isBroswer";
+import Router from "next/router";
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
@@ -28,7 +30,18 @@ function create(
       uri: "http://localhost:4000/graphql",
       credentials: "include"
    });
-
+   const errorLink = onError(({ graphQLErrors, networkError }) => {
+      if (graphQLErrors)
+         graphQLErrors.map(({ message, locations, path }) => {
+            console.log(
+               `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+            );
+            if (isBroswer && message.includes("You must be authenticated!")) {
+               Router.replace("/login");
+            }
+         });
+      if (networkError) console.log(`[Network error]: ${networkError}`);
+   });
    const authLink = setContext((_, { headers }) => {
       const token = getToken();
 
@@ -45,7 +58,7 @@ function create(
    return new ApolloClient({
       connectToDevTools: isBroswer,
       ssrMode: !isBroswer, // Disables forceFetch on the server (so queries are only run once)
-      link: authLink.concat(httpLink),
+      link: errorLink.concat(authLink.concat(httpLink)),
       cache: new InMemoryCache().restore(initialState || {})
    });
 }

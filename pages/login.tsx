@@ -5,8 +5,7 @@ import { InputField } from "../components/Fields/InputField";
 import { LoginComponent } from "../generated/apolloComponents";
 import Router from "next/router";
 
-// @ts-ignore
-const LoginPage: React.FunctionComponent<Props> = () => (
+const LoginPage: React.FunctionComponent<{}> = () => (
    <Layout title="Register Page">
       <LoginComponent>
          {login => (

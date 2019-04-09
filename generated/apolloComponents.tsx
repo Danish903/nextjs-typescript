@@ -112,6 +112,13 @@ export type RegisterMutation = { __typename?: "Mutation" } & {
   >;
 };
 
+export type HelloWorldQueryVariables = {};
+
+export type HelloWorldQuery = { __typename?: "Query" } & Pick<
+  Query,
+  "helloWorld"
+>;
+
 import gql from "graphql-tag";
 import * as React from "react";
 import * as ReactApollo from "react-apollo";
@@ -260,4 +267,43 @@ export function withRegister<TProps, TChildProps = {}>(
     RegisterMutationVariables,
     RegisterProps<TChildProps>
   >(RegisterDocument, operationOptions);
+}
+export const HelloWorldDocument = gql`
+  query HelloWorld {
+    helloWorld
+  }
+`;
+
+export class HelloWorldComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<HelloWorldQuery, HelloWorldQueryVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<HelloWorldQuery, HelloWorldQueryVariables>
+        query={HelloWorldDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type HelloWorldProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<HelloWorldQuery, HelloWorldQueryVariables>
+> &
+  TChildProps;
+export function withHelloWorld<TProps, TChildProps = {}>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        HelloWorldQuery,
+        HelloWorldQueryVariables,
+        HelloWorldProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    HelloWorldQuery,
+    HelloWorldQueryVariables,
+    HelloWorldProps<TChildProps>
+  >(HelloWorldDocument, operationOptions);
 }
