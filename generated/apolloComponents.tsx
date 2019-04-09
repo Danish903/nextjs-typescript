@@ -101,6 +101,13 @@ export type LoginMutation = { __typename?: "Mutation" } & {
   >;
 };
 
+export type LogoutMutationVariables = {};
+
+export type LogoutMutation = { __typename?: "Mutation" } & Pick<
+  Mutation,
+  "logout"
+>;
+
 export type RegisterMutationVariables = {
   data: RegisterInput;
 };
@@ -118,6 +125,17 @@ export type HelloWorldQuery = { __typename?: "Query" } & Pick<
   Query,
   "helloWorld"
 >;
+
+export type MeQueryVariables = {};
+
+export type MeQuery = { __typename?: "Query" } & {
+  me: Maybe<
+    { __typename?: "User" } & Pick<
+      User,
+      "id" | "name" | "lastName" | "firstName" | "email"
+    >
+  >;
+};
 
 import gql from "graphql-tag";
 import * as React from "react";
@@ -217,6 +235,49 @@ export function withLogin<TProps, TChildProps = {}>(
     LoginProps<TChildProps>
   >(LoginDocument, operationOptions);
 }
+export const LogoutDocument = gql`
+  mutation Logout {
+    logout
+  }
+`;
+
+export class LogoutComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<LogoutMutation, LogoutMutationVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<LogoutMutation, LogoutMutationVariables>
+        mutation={LogoutDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type LogoutProps<TChildProps = {}> = Partial<
+  ReactApollo.MutateProps<LogoutMutation, LogoutMutationVariables>
+> &
+  TChildProps;
+export type LogoutMutationFn = ReactApollo.MutationFn<
+  LogoutMutation,
+  LogoutMutationVariables
+>;
+export function withLogout<TProps, TChildProps = {}>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        LogoutMutation,
+        LogoutMutationVariables,
+        LogoutProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.withMutation<
+    TProps,
+    LogoutMutation,
+    LogoutMutationVariables,
+    LogoutProps<TChildProps>
+  >(LogoutDocument, operationOptions);
+}
 export const RegisterDocument = gql`
   mutation Register($data: RegisterInput!) {
     register(data: $data) {
@@ -306,4 +367,49 @@ export function withHelloWorld<TProps, TChildProps = {}>(
     HelloWorldQueryVariables,
     HelloWorldProps<TChildProps>
   >(HelloWorldDocument, operationOptions);
+}
+export const MeDocument = gql`
+  query Me {
+    me {
+      id
+      name
+      lastName
+      firstName
+      email
+    }
+  }
+`;
+
+export class MeComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<MeQuery, MeQueryVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<MeQuery, MeQueryVariables>
+        query={MeDocument}
+        {...(this as any)["props"] as any}
+      />
+    );
+  }
+}
+export type MeProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<MeQuery, MeQueryVariables>
+> &
+  TChildProps;
+export function withMe<TProps, TChildProps = {}>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        MeQuery,
+        MeQueryVariables,
+        MeProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    MeQuery,
+    MeQueryVariables,
+    MeProps<TChildProps>
+  >(MeDocument, operationOptions);
 }

@@ -2,8 +2,9 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import { Formik, Field } from "formik";
 import { InputField } from "../components/Fields/InputField";
-import { LoginComponent } from "../generated/apolloComponents";
+import { LoginComponent, MeQuery } from "../generated/apolloComponents";
 import Router from "next/router";
+import { ME_QUERY } from "../graphql/user/queries/me";
 
 const LoginPage: React.FunctionComponent<{}> = () => (
    <Layout title="Register Page">
@@ -24,6 +25,17 @@ const LoginPage: React.FunctionComponent<{}> = () => (
                      variables: {
                         email,
                         password
+                     },
+                     update: (cache, { data }) => {
+                        if (!data || !data.login) {
+                           return;
+                        }
+                        cache.writeQuery<MeQuery>({
+                           query: ME_QUERY,
+                           data: {
+                              me: data.login
+                           }
+                        });
                      }
                   });
                   console.log(response);
